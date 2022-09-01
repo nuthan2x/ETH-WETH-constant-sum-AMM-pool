@@ -25,4 +25,9 @@ contract constant_SUM_AMM{
         total_LPtokens += _amount;
         LPtoken_user[_from] += _amount;
     }
+    
+    function swap(address _tokenIn, uint _amountIn) external returns (uint amountOut) {
+        require( _tokenIn == address(token1),
+            "invalid token"
+        );
 }
