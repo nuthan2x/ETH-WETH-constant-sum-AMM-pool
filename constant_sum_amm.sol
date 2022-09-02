@@ -4,14 +4,14 @@ pragma solidity >= 0.8.16;
 
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.0.0/contracts/token/ERC20/IERC20.sol";
 
-
+//inspired from solidity by example
 // this code is just to learn the math behind AMM, still has lot of functionality to add.
+// best played/visualized in REMIX IDE
 
 contract constant_SUM_AMM{
     IERC20 public immutable ETH;
     IERC20 public immutable WETH;
 
-    address public pool_creator;
     uint public ETH_reserve;
     uint public WETH_reserve;
 
@@ -21,7 +21,6 @@ contract constant_SUM_AMM{
     constructor(address _ETH, address _WETH){
         ETH = IERC20(_ETH);
         WETH = IERC20(_WETH);
-        pool_creator = msg.sender;
     }
 
     function _mint(address _to, uint _amount) internal{
@@ -30,8 +29,8 @@ contract constant_SUM_AMM{
     }
 
     function _burn(address _from, uint _amount) internal{
-        total_LPtokens += _amount;
-        LPtoken_ofuser[_from] += _amount;
+        total_LPtokens -= _amount;
+        LPtoken_ofuser[_from] -= _amount;
     }
     
 
